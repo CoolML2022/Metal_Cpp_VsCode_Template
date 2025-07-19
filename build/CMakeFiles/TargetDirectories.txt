@@ -1,0 +1,3 @@
+/Users/vincentkrebs/Desktop/C++_Projects/MatrixMultiplyMetal/build/CMakeFiles/MatrixMultiply.dir
+/Users/vincentkrebs/Desktop/C++_Projects/MatrixMultiplyMetal/build/CMakeFiles/edit_cache.dir
+/Users/vincentkrebs/Desktop/C++_Projects/MatrixMultiplyMetal/build/CMakeFiles/rebuild_cache.dir
