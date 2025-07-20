@@ -68,7 +68,7 @@ brew install cmake
 
 - `clangd` — C++/Objective-C++ IntelliSense
 - `CMake Tools` — configure, build and run from VSCode
-- `[Metal Shader Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=doublebuffer.metal-shader)` — Metal shader syntax highlighting
+- [Metal Shader Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=doublebuffer.metal-shader) — Metal shader syntax highlighting
 
 ### 2. Confirm:
 
