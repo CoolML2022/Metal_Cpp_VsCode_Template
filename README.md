@@ -1,6 +1,6 @@
-# Metal + C++ VSCode Template (macOS)
+# Metal C++ VSCode Template (macOS)
 
-This project is a fully configured template for developing **C++ GPU applications** using **Metal Compute Shaders** and **CMake** in **Visual Studio Code**. It includes a simple example multiplying two matricies and it is primarly focused on **Apple Silicon (M1 - M4)**. This Proejct uses CMake and clangd.
+This project is a fully configured template for developing **C++ GPU applications** using **Metal Compute Shaders** and **CMake** in **Visual Studio Code**. It includes a simple example multiplying two matricies and it is primarly focused on **Apple Silicon (M1 - M4)**. This Proejct uses CMake and clangd. Sadly there is no intellisense for metal shaders. Therfore you will need to install Xcode and create a dummy project.
 
 ---
 
@@ -68,7 +68,7 @@ brew install cmake
 
 - `clangd` — C++/Objective-C++ IntelliSense
 - `CMake Tools` — configure, build and run from VSCode
-- `Better Metal` — Metal shader syntax highlighting
+- `[Metal Shader Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=doublebuffer.metal-shader)` — Metal shader syntax highlighting
 
 ### 2. Confirm:
 
