@@ -1,6 +1,6 @@
 # Metal + C++ VSCode Template (macOS)
 
-This project is a fully configured template for developing **C++ GPU applications** using **Metal Compute Shaders** and **CMake** in **Visual Studio Code**. It includes a simple example multiplying two matricies and it is primarly focused on **Apple Silicon (M1 - M4)**
+This project is a fully configured template for developing **C++ GPU applications** using **Metal Compute Shaders** and **CMake** in **Visual Studio Code**. It includes a simple example multiplying two matricies and it is primarly focused on **Apple Silicon (M1 - M4)**. This Proejct uses CMake and clangd.
 
 ---
 
