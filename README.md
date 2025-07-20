@@ -142,7 +142,8 @@ Click **"Use this template"**
 Or use the GitHub CLI:
 
 ```bash
-gh repo create MyNewGPUProject --public --template=<your-username>/MyMetalTemplate
+gh repo create MyNewGPUProject --public --template=<your-username>/Metal_Cpp_VsCode_Template
+
 ```
 
 ---
