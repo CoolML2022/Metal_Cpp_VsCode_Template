@@ -1,3 +1,0 @@
-# Hashes of file build rules.
-98d4bebdb480b2ece39e97f6f5a22c63 matrix_multiply.air
-1d68a5e05fa8589ee34e0a0a7a5f384a matrix_multiply.metallib
