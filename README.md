@@ -1,6 +1,6 @@
 # Metal + C++ VSCode Template (macOS)
 
-This project is a fully configured template for developing **C++ GPU applications** using **Metal Compute Shaders** and **CMake**, specifically designed for **macOS with Apple Silicon (M1–M4)** in **Visual Studio Code**.
+This project is a fully configured template for developing **C++ GPU applications** using **Metal Compute Shaders** and **CMake** in **Visual Studio Code**. It includes a simple example multiplying two matricies and it is primarly focused on **Apple Silicon (M1 - M4)**
 
 ---
 
@@ -35,17 +35,21 @@ xcode-select --install
 brew install llvm
 ```
 
-Then add it to your shell profile:
+Then add it to your settings.json file:
 
-```bash
-echo 'export PATH="/opt/homebrew/opt/llvm/bin:$PATH"' >> ~/.zprofile
-source ~/.zprofile
-```
-
-Check installation:
-
-```bash
-which clangd
+```settings.json
+{
+    "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd", #this should be the default directory, if not locate clangd and change this path
+    "clangd.arguments": [
+        "--compile-commands-dir=build",
+        "--header-insertion=never"
+    ],
+    "files.associations": {
+      "*.mm": "objective-cpp",
+      "*.h": "objective-c",
+      "*.metal": "metal"
+    }
+  }
 ```
 
 ---
@@ -68,8 +72,11 @@ brew install cmake
 
 ### 2. Confirm:
 
-- Bottom right of VSCode shows: `clangd`
-- IntelliSense works in `.cpp` and `.mm` files
+- Make sure that the C/C++ Extension from Microsoft is disabled
+- Check if IntelliSense works in `.cpp` and `.mm` files
+- It should look something like this:
+  <img width="1048" height="290" alt="image" src="https://github.com/user-attachments/assets/7a9df249-7184-40f4-b9ca-1ae1574f9143" />
+
 
 ---
 
