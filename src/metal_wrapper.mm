@@ -3,7 +3,7 @@
 
 #include "metal_wrapper.hpp"
 
-// Konstruktor (kann leer bleiben)
+// constructor can be empty
 MetalComputeWrapper::MetalComputeWrapper() {}
 
 Matrix MetalComputeWrapper::multiply(const Matrix& A, const Matrix& B) {
@@ -11,40 +11,41 @@ Matrix MetalComputeWrapper::multiply(const Matrix& A, const Matrix& B) {
     int K = A.getCols();
     int N = B.getCols();
 
-    // Leere Ergebnismatrix
+    // empty result matrix
     Matrix C(M, N);
 
-    // Metal Setup
+    // Metal setup
     id<MTLDevice> device = MTLCreateSystemDefaultDevice();
-    // device ist somit hier die GPU
+    // device is here the GPU
     id<MTLCommandQueue> queue = [device newCommandQueue];
-    // Eine queue für die GPU-Befehle
+    // a queue for GPU orders
 
-    // Shader laden
+    // load shader
     NSError* error = nil;
     NSString* libPath = [[NSBundle mainBundle] pathForResource:@"matrix_multiply" ofType:@"metallib"];
-    id<MTLLibrary> library = [device newLibraryWithFile:libPath error:&error];
-    // lädt den shader von einem Pfad
+    NSURL* libURL = [NSURL URLWithString:(libPath)];
+    id<MTLLibrary> library = [device newLibraryWithURL:libURL error:&error];
+    // loads the shader from a path
     id<MTLFunction> function = [library newFunctionWithName:@"matrix_multiply"];
-    // im shader der "kernel matrix_multiply"
+    // in this shader the: "kernel matrix_multiply" function
     id<MTLComputePipelineState> pipeline = [device newComputePipelineStateWithFunction:function error:&error];
-    // erstellt die Pipeline-Konfiguration für den shader
+    // creates the pipeline for the shader
 
 
-    // Buffer-Größen: die dimensionen der Arrays
+    // Buffer-size: size of matricies
     NSUInteger bytesA = A.getRows() * A.getCols() * sizeof(float);
     NSUInteger bytesB = B.getRows() * B.getCols() * sizeof(float);
     NSUInteger bytesC = C.getRows() * C.getCols() * sizeof(float);
 
-    // Speicher anlegen
+    // allocate Memory
     id<MTLBuffer> bufferA = [device newBufferWithBytes:A.data().data() length:bytesA options:MTLResourceStorageModeShared];
     id<MTLBuffer> bufferB = [device newBufferWithBytes:B.data().data() length:bytesB options:MTLResourceStorageModeShared];
     id<MTLBuffer> bufferC = [device newBufferWithLength:bytesC options:MTLResourceStorageModeShared];
 
-    // Dimensionen (M, K, N)
+    // dimensions (M, K, N)
     uint32_t m = M, k = K, n = N;
 
-    // Shader ausführen
+    // execute shader
     id<MTLCommandBuffer> commandBuffer = [queue commandBuffer];
     id<MTLComputeCommandEncoder> encoder = [commandBuffer computeCommandEncoder];
 
@@ -56,18 +57,19 @@ Matrix MetalComputeWrapper::multiply(const Matrix& A, const Matrix& B) {
     [encoder setBytes:&k length:sizeof(uint32_t) atIndex:4];
     [encoder setBytes:&n length:sizeof(uint32_t) atIndex:5];
 
-    // Thread-Konfiguration
+    // thread-configuration
     MTLSize gridSize = MTLSizeMake(M * N, 1, 1);
     NSUInteger threadsPerGroup = pipeline.maxTotalThreadsPerThreadgroup;
     if (threadsPerGroup > gridSize.width) threadsPerGroup = gridSize.width;
     MTLSize threadgroupSize = MTLSizeMake(threadsPerGroup, 1, 1);
 
+    // dispatching Thread and end queue
     [encoder dispatchThreads:gridSize threadsPerThreadgroup:threadgroupSize];
     [encoder endEncoding];
     [commandBuffer commit];
     [commandBuffer waitUntilCompleted];
 
-    // Ergebnis zurück in C++
+    // copying result to CPU
     memcpy(C.data().data(), [bufferC contents], bytesC);
 
     return C;
