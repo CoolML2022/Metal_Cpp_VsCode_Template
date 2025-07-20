@@ -83,7 +83,7 @@ brew install cmake
 - Create a new Project
   1. Chose the `Command Line Tool` option an select the language: C++ or Objective-C (it does not really matter)
   2. Select the location for this project, its best to not do it in this project folder
-  3. File -> Add Files to "Your Project name" select your .metal shader and select the option: Refrence files in place (this allowes you to edit the file in XCode and have it updated in VS Code)
+  3. File -> Add Files to "Your Project name"... select your .metal shaders and select the action: `Refrence files in place` (this allowes you to edit the files in XCode and have it updated in VS Code)
   
 ---
 
