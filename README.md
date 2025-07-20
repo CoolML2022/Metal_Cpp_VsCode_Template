@@ -62,12 +62,12 @@ brew install cmake
 
 ---
 
-## VSCode Setup
+## VSCode / XCode Setup
 
 ### 1. Recommended extensions
 
-- `clangd` — C++/Objective-C++ IntelliSense
-- `CMake Tools` — configure, build and run from VSCode
+- [clangd](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) — C++/Objective-C++ IntelliSense
+- [CMake](https://marketplace.visualstudio.com/items?itemName=twxs.cmake) — suppoert for CMake in Visual Studio Code
 - [Metal Shader Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=doublebuffer.metal-shader) — Metal shader syntax highlighting
 
 ### 2. Confirm:
@@ -77,7 +77,14 @@ brew install cmake
 - It should look something like this:
   <img width="1048" height="290" alt="image" src="https://github.com/user-attachments/assets/7a9df249-7184-40f4-b9ca-1ae1574f9143" />
 
+### 3. XCode
 
+- Install [XCode](https://apps.apple.com/de/app/xcode/id497799835?mt=12) from the App Store
+- Create a new Project
+  1. Chose the `Command Line Tool` option an select the language: C++ or Objective-C (it does not really matter)
+  2. Select the location for this project, its best to not do it in this project folder
+  3. File -> Add Files to "Your Project name" select your .metal shader and select the option: Refrence files in place (this allowes you to edit the file in XCode and have it updated in VS Code)
+  
 ---
 
 ## Build & Run the Project
